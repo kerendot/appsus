@@ -71,9 +71,8 @@ function generatePlace(id, name, lat, lng, tags) {
   return {
     id,
     name,
-    lat,
-    lng,
-    tags
+    tags,
+    position: {lat,lng}
   }
 }
 

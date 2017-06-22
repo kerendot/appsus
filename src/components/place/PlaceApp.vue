@@ -1,7 +1,9 @@
 <template>
   <section>
     <h1> Places </h1>
-    <map-cmp :places="places" :selectedPlace="selectedPlace"></map-cmp>
+   
+    <map-cmp :places="places" :selectedPlace="selectedPlace" 
+      @create="createPlace"></map-cmp>
     <place-list :places="places" 
       @select="selectPlace" 
       @save="savePlace" 
@@ -12,9 +14,12 @@
 </template>
  
  <script>
+
+
 import PlaceService from '../../services/place/place.service';
 import MapCmp from './MapCmp';
 import PlaceList from './PlaceList';
+
 export default {
   name: 'place-app',
   components: {
@@ -24,7 +29,8 @@ export default {
   data() {
     return {
       places: null,
-      selectedPlace: null
+      selectedPlace: null,
+
     }
   },
 
@@ -34,6 +40,9 @@ export default {
     })
   },
   methods: {
+    createPlace(position){
+      console.log('app creating a place with',position);
+    },
     selectPlace(place) {
       this.selectedPlace = place;
     },

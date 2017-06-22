@@ -30,7 +30,7 @@ export default {
         border-radius: 1em;
         text-align: center;
         position: absolute;
-        left: 40%;
-        top: 50%;
+        left: 50%;
+        top: 80%;
     }
 </style>
