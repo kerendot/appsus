@@ -1,7 +1,9 @@
 <template>
-  <div class="home">
-    <h4>Email preview</h4>
-    <p>Sender details</p> 
+  <div class="single-email home">
+    <h4>{{email.subject}}</h4>
+    <p>{{email.body}}</p>
+
+     
    
   </div>
 </template>
@@ -10,12 +12,20 @@
 
 export default {  
   name: 'email-preview',
+  props:['email']
 }
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.single-email {
+  text-align: left;
+  padding-left: 10px;
+  border: 1px solid yellow;
+}
+
 h1, h2 {
   font-weight: normal;
 }

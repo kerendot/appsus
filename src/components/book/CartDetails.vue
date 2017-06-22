@@ -24,7 +24,7 @@
 <script>
 import CartService from '../../services/book/cart.service';
 import CartItem from './CartItem';
-import CheckOut from './Checkout';
+import CheckOut from './CheckOut';
 
 export default {
     name: 'cart-details',
