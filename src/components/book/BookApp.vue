@@ -1,16 +1,22 @@
 <template>
   <div class="home">
     <h2>Books!</h2>
-    <!--<router-link to="/emails">Emails | </router-link>
-    <router-link to="/books">Books Store | </router-link>
-    <router-link to="/places">Places</router-link>
-    <router-view></router-view>-->
+
+    <book-list></book-list>
+    <cart-details></cart-details>
   </div>
 </template>
 
 <script>
+import BookList from './BookList'
+import CartDetails from './CartDetails'
+
 export default {
-  name: 'book',
+  name: 'bookApp',
+  components: {
+        BookList,
+        CartDetails
+    },
   data () {
     return {
     }
