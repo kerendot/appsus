@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import BookService from './services/book.service';
-import CartService from './services/cart.service';
+import BookService from '../../services/book/book.service';
+import CartService from '../../services/book/cart.service';
 import FilterBook from './FilterBook';
 import bookPreview from './BookPreview';
 import bookEdit from './BookEdit';

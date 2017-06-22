@@ -19,7 +19,6 @@
 </template>
 
 <script>
-// import CartService from '../services/cart.service';
 export default {
     name: 'cart-item',
     props: ['cartItem'],

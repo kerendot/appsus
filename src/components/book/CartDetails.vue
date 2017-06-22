@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import CartService from './services/cart.service';
+import CartService from '../../services/book/cart.service';
 import CartItem from './CartItem';
 import CheckOut from './Checkout';
 
