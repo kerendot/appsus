@@ -2,6 +2,7 @@
 // Client Side State of the store
 // Kind of caching...
 var emails = [];
+var archived = [];
 
 function getEmails() {
   return new Promise(resolve => {
@@ -26,10 +27,12 @@ function getEmailById(emailId) {
   });
 }
 
-function deleteEmail(email) {
-  console.log('Deleting the email', email)
+function archiveEmail(email) {
+  console.log('Archiving the email', email)
   var idx = emails.indexOf(email)
   emails.splice(idx, 1);
+  archived.push(idx);
+  
 }
 
 function getNext(email) {
@@ -60,11 +63,11 @@ function generateEmails() {
   return subject.map(generateEmail);
 }
 
-function generateEmail(subject, i) {
+function generateEmail(subject, body, i) {
   return {
     id: i + 1,
     subject: `${subject}`,
-    body: `lorem ipsum dkhd daklhd dakhdk dakhdk da`,
+    body: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, tenetur, nesciunt consequatur iusto molestiae quaerat hic! Similique aliquid quis id doloribus debitis libero corporis dignissimos, quibusdam, consequatur laboriosam amet consectetur.`,
     isRead: false
   }
 }
@@ -72,7 +75,7 @@ function generateEmail(subject, i) {
 
 export default {
   getEmails,
-  deleteEmail,
+  archiveEmail,
   getNext,
   saveEmail
 }

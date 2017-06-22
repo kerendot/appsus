@@ -1,8 +1,8 @@
 <template>
-  <div v-if="email">
-    
-    <h3> {{email.subject}} </h3>
-    <p> {{email.body}} </p>
+  <div>
+    <input v-model="newSubject" type="text" placeholder="Enter subject">
+    <textarea v-model="newBody" type="text" placeholder="write some words..."></textarea>
+    <button @click="createEmail">Send Email</button>   
       
   </div>
 </template>
@@ -11,7 +11,6 @@
 
 export default {  
   name: 'email-details',
-  props: ['email'],
   methods: {
 }
 }

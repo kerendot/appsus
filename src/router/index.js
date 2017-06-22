@@ -5,6 +5,10 @@ import EmailApp from '@/components/email/EmailApp'
 import BookApp from '@/components/book/BookApp'
 import PlaceApp from '@/components/place/PlaceApp'
 
+import Element from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+
+Vue.use(Element)
 Vue.use(Router)
 
 export default new Router({
