@@ -1,16 +1,26 @@
 <template>
   <div class="home">
     <h2>emails!</h2>
-    <!--<router-link to="/emails">Emails | </router-link>
-    <router-link to="/books">Books Store | </router-link>
-    <router-link to="/places">Places</router-link>
-    <router-view></router-view>-->
+    <email-list></email-list>
+    <email-details></email-details>
+    <email-status></email-status>
   </div>
 </template>
 
 <script>
+
+import EmailList from './EmailList'
+import EmailDetails from './EmailDetails'
+import EmailStatus from './EmailStatus'
+
 export default {
   name: 'email',
+  components: {
+  EmailList,
+  EmailDetails,
+  EmailStatus
+  },
+
   data () {
     return {
     }
