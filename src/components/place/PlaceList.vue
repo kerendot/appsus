@@ -2,19 +2,15 @@
     <section v-if="places">
         <div>
             <h2>You have {{places.length}} saved places</h2>
-            <!--<button @click="isCreateMode=true">Add new place</button>-->
-            <!--<filter-book @filter="setFilter">
-            </filter-book>-->
-            <!--<book-details v-if="selectedBook" @close="resetSelected" @next="selectNext" :book="selectedBook">
-            </book-details>-->
-            <!--<book-edit v-if="editedBook || isCreateMode" :book="editedBook" @save="saveBook" @cancel="closeEdit">
-            </book-edit>-->
+    
+            <place-details v-if="selectedPlace" @close="resetSelected" @next="selectNext" :place="selectedPlace">
+            </place-details>
+            <place-edit v-if="editedPlace || isCreateMode" :place="editedPlace" @save="savePlace" @cancel="closeEdit">
+            </place-edit>
+            <button @click="isCreateMode=true">Add place</button>
             <ul>
-                <place-details v-for="place in places" 
-                :key="place.id"
-                @click.native="selectPlace(place)"  
-                :place="place">
-                </place-details>
+                <place-preview v-for="place in places" :key="place.id" @click.native="selectPlace(place)" @edit="editPlace(place)" @delete="deletePlace(place)" :place="place">
+                </place-preview>
             </ul>
         </div>
     </section>
@@ -23,48 +19,60 @@
 <script>
 import PlaceService from '../../services/place/place.service';
 import PlaceDetails from './PlaceDetails';
+import PlacePreview from './PlacePreview';
+import PlaceEdit from './PlaceEdit';
 import bus from '../../bus';
 
 export default {
     name: 'place-list',
+    props: ['places'],
     components: {
+        PlacePreview,
+        PlaceEdit,
         PlaceDetails
     },
-    created() {
-        PlaceService.getPlaces().then(places => {
-            this.places = places;
-        })
-    },
+
     data() {
         return {
-            places: null,
-            selectedPlace: null,
             editedPlace: null,
-            isCreateMode: false
+            isCreateMode: false,
+           selectedPlace: null
         }
     },
     methods: {
         selectPlace(place) {
+            this.$emit('select', place);
             this.selectedPlace = place;
-            bus.$emit('placeSelected',this.selectedPlace);
 
+        },
+        selectNext() {
+            this.selectedPlace = PlaceService.getNext(this.selectedPlace);
         },
         resetSelected() {
             this.selectedPlace = null;
         },
         editPlace(place) {
-            console.log('Editing the place', place)
             this.editedPlace = place;
         },
         deletePlace(place) {
-            PlaceService.deletePlace(place);
+            this.$emit('delete', place);
         },
 
         savePlace(place) {
-            PlaceService.savePlace(place);
+            this.$emit('save', place);
             this.closeEdit();
-        }
-    }
+        },
+        closeEdit() {
+            this.editedPlace = null;
+            this.isCreateMode = false;
+        },
+    },
+    // watch: {
+    //     'selectedPlace': function (selectedPlace) {
+    //         console.log('selected Changed');
+    //         this.selectedPlaceForDetails = selectedPlace;
+    //     }
+    // }
 }
 
 </script>
@@ -76,6 +84,4 @@ ul {
     flex-flow: row wrap;
     justify-content: space-around;
 }
-
-
 </style>

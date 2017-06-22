@@ -1,9 +1,9 @@
 <template>
-    <section class="book-details">
-        <li>
-            <h1>{{place.name}}</h1>
-            <p>{{place.tags}}</p>
-        </li>
+    <section class="popup place-details">
+        <button @click="closeMe">x</button>
+        <h1>Details of: {{place.name}}</h1>
+        <h3>${{place.tags}}</h3>
+        <button @click="requestNextPlace">Next > </button>
     </section>
 </template>
 
@@ -12,17 +12,25 @@ export default {
     name: 'place-details',
     props: ['place'],
     methods: {
+        closeMe() {
+            this.$emit('close');
+        },
+        requestNextPlace() {
+            this.$emit('next');
+        }
     }
 
 }
 </script>
 
 <style scoped>
-
-li {
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
-}
+    .popup {
+        background: gold;
+        padding: 10px;
+        border-radius: 1em;
+        text-align: center;
+        position: absolute;
+        left: 40%;
+        top: 50%;
+    }
 </style>

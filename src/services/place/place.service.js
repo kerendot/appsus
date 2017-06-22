@@ -32,14 +32,15 @@ function deletePlace(place) {
   places.splice(idx, 1);
 }
 
-// function getNext(book) {
-//     // select next in a cyclic way
-//     var idx = places.indexOf(book);
-//     return (idx < places.length-1)?  
-//           places[idx+1] : places[0];
-// }
+function getNext(place) {
+    // select next in a cyclic way
+    var idx = places.indexOf(place);
+    return (idx < places.length-1)?  
+          places[idx+1] : places[0];
+}
 
 function savePlace(place) {
+  console.log('saving place in service',place)
   var idx = places.findIndex(currPlace => currPlace.id === place.id);
   //if this is a new book
   if (idx === -1) places.push(place);
@@ -59,15 +60,16 @@ function savePlace(place) {
 // Used to create local data with no AJAX
 function generatePlaces() {
   var places = [];
-  places.push(generatePlace('MisterBit',32.087893,34.803038,['work','study','fun']));
-  places.push(generatePlace('Home',32.069557,34.777067,['home','family','fun']));
-  places.push(generatePlace('Frizis',32.059934,34.774229,['bassa','stranger','south']));
+  places.push(generatePlace(1, 'MisterBit',32.087893,34.803038,['work','study','fun']));
+  places.push(generatePlace(2, 'KC Home',32.069557,34.777067,['home','family','fun']));
+  places.push(generatePlace(3, 'KO Home',32.091208,34.774210,['home','family','fun']));
   return places;
 }
 
-function generatePlace(name, lat, lng, tags) {
+
+function generatePlace(id, name, lat, lng, tags) {
   return {
-    id: places.length + 1,
+    id,
     name,
     lat,
     lng,
@@ -100,6 +102,7 @@ function generatePlace(name, lat, lng, tags) {
 export default {
   getPlaces,
   deletePlace,
-  // getNext,
-  savePlace
+  getNext,
+  savePlace,
+  generatePlace
 }
