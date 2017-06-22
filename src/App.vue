@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-     <!--<h2>Keren's Appsus - Home Page</h2>-->
+     <h2>Keren's Appsus - Home Page</h2>
+    <router-link to="/">Home | </router-link>
+    <router-link to="/email">Emails | </router-link>
+    <router-link to="/book">Books Store | </router-link>
+    <router-link to="/place">Places</router-link>
     <router-view></router-view>
   </div>
 </template>

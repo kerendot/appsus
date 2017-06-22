@@ -1,10 +1,7 @@
 <template>
   <div class="home">
-    <h2>Keren's Appsus - Home Page</h2>
-    <router-link to="/email">Emails | </router-link>
-    <router-link to="/book">Books Store | </router-link>
-    <router-link to="/place">Places</router-link>
-    <router-view></router-view>
+    <!--<h2>Keren's Appsus - Home Page</h2>-->
+
   </div>
 </template>
 
