@@ -6,12 +6,27 @@
     <router-link to="/book">Books Store | </router-link>
     <router-link to="/place">Places</router-link>
     <router-view></router-view>
+
+    <!--<input v-model=vm.searchPlace v-gmaps-searchbox:location=vm>
+    {{vm}}-->
+
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data () {
+            return {
+               
+                // vm: {
+                //     searchPlace: '',
+                //     location: {}
+
+                // }
+            }
+        },
 }
 </script>
 
