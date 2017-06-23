@@ -1,40 +1,66 @@
 <template>
-  <div class="home">
-    <h2>places!</h2>
-    <!--<router-link to="/emails">Emails | </router-link>
-    <router-link to="/books">Books Store | </router-link>
-    <router-link to="/places">Places</router-link>
-    <router-view></router-view>-->
-  </div>
+  <section>
+    <h1> Places </h1>
+  
+    <map-cmp :places="places" :selectedPlace="selectedPlace" @create="createPlace"></map-cmp>
+    <place-create v-if="newPlacePosition" :position="this.newPlacePosition" @save="savePlace" @cancel="closeCreate">
+    </place-create>
+    <place-list :places="places" @select="selectPlace" @save="savePlace" @delete="deletePlace">
+    </place-list>
+  
+  </section>
 </template>
+ 
+ <script>
 
-<script>
+
+import PlaceService from '../../services/place/place.service';
+import MapCmp from './MapCmp';
+import PlaceList from './PlaceList';
+import PlaceCreate from './PlaceCreate';
+
 export default {
-  name: 'place',
-  data () {
+  name: 'place-app',
+  components: {
+    MapCmp,
+    PlaceList,
+    PlaceCreate
+  },
+  data() {
     return {
+      places: null,
+      selectedPlace: null,
+      newPlacePosition: null
+
     }
+  },
+
+  created() {
+    PlaceService.getPlaces().then(places => {
+      this.places = places;
+    })
+  },
+  methods: {
+    createPlace(position) {
+      this.newPlacePosition = position;
+    },
+    selectPlace(place) {
+      this.selectedPlace = place;
+    },
+
+    deletePlace(place) {
+      PlaceService.deletePlace(place);
+    },
+
+    savePlace(place) {
+      PlaceService.savePlace(place);
+      this.newPlacePosition = null;
+      this.closeCreate();
+    },
+    closeCreate() {
+      this.newPlacePosition = null;
+    },
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>
