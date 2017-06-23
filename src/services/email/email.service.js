@@ -42,14 +42,23 @@ function getNext(email) {
           emails[idx+1] : emails[0];
 }
 
-function saveEmail(email) {
-  var idx = emails.findIndex(currEmail => currEmail.id === email.id);
-  //if this is a new email
-  if (idx === -1) emails.push(email);
-  //if this is edit of existing email
-  else emails.splice(idx, 1, email);
-}
+function saveEmail(subject, body) {
 
+  console.log('new mail is in handler')
+
+  var newEmail = {
+    id: emails.length + 1,
+    subject: `${subject}`,
+    body: `${body}`,
+    isRead: false
+  }
+
+  setTimeout(function() {
+    emails.unshift(newEmail);
+    alert('you have new mail!')
+  }, 2000); 
+  // console.log(newEmail)
+};
 
 // Used to create local data with no AJAX
 function generateEmails() {
@@ -77,5 +86,7 @@ export default {
   getEmails,
   archiveEmail,
   getNext,
-  saveEmail
+  saveEmail,
+  generateEmail
+  
 }

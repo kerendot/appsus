@@ -2,20 +2,33 @@
   <div>
     <input v-model="newSubject" type="text" placeholder="Enter subject">
     <textarea v-model="newBody" type="text" placeholder="write some words..."></textarea>
-    <button @click="createEmail">Send Email</button>   
-      
+    <button @click="newMail">Send Email</button>   
   </div>
 </template>
 
 <script>
 
 export default {  
-  name: 'email-details',
+  name: 'email-compose',
+
+  data() {
+    return {
+      newSubject: '',
+      newBody: '',
+    } 
+  },
   methods: {
-}
+    newMail() {
+      this.$emit('newMail', this.newSubject, this.newBody);
+      // clear values for next compose 
+      this.newSubject = '';
+      this.newBody = '';
+    }
+  }
 }
 
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

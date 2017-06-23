@@ -1,31 +1,39 @@
 <template>
   <div class="home">
     <h2>emails!</h2>
-  <div class="compose-email" v-show="false">
-        
-  </div>
 
-    <button @click="showComposeMsg">Compose</button>
+
+    <!-- NEW MSG -->
+    <button v-show="!showCompose" @click="openComposeMsg"> Compose </button>
+
+    <email-compose v-show="showCompose" @newMail="newEmailHandler">
+    </email-compose>
+    
+    <!--EMAILS-->
     <div class="email-box flex">
       <email-list class="email-list" 
-      :emails="emails" 
-      @archive="archiveEmail"
-      @select="selectEmail">
-        <h2>Email list</h2>
-        
+        :emails="emails" 
+        @archive="archiveEmail"
+        @select="selectEmail">
+          <h2>Email list</h2>
       </email-list>
+
+      
       <email-details class="email-details" :email="selectedEmail">
       </email-details>
 
     </div>
+
     <email-status class="email-status"></email-status>
   </div>
+
 </template>
 
 <script>
 
 import EmailList from './EmailList'
 import EmailDetails from './EmailDetails'
+import EmailCompose from './EmailCompose'
 import EmailStatus from './EmailStatus'
 import EmailService from '../../services/email/email.service';
 
@@ -36,13 +44,13 @@ export default {
   components: {
   EmailList,
   EmailDetails,
-  EmailStatus
+  EmailStatus,
+  EmailCompose
 },
   created() {
       EmailService.getEmails().then(emails => {
           this.emails = emails;
           this.selectedEmail = emails[0];
-          console.log('got email', emails[0]);
       })
   },
   computed: {
@@ -60,29 +68,34 @@ export default {
     return {
       emails: null,
       selectedEmail: null,  
-      newSubject: '',
-      newBody: ''
+      showCompose: false
     }
   },
   methods: {
     selectEmail(email) {
       this.selectedEmail = email;
-      console.log('email at selected email');
+      setTimeout(function() {
+        if (!email.isRead) return email.isRead = true;
+      }, 1000);
       console.log(this.selectedEmail);
-      
+    
     },
     archiveEmail(email){
       console.log('Email handled in EmailApp')
       EmailService.archiveEmail(email)
     },
 
-    showComposeMsg() {
+    openComposeMsg() {
+      console.log('composed!')
+      return this.showCompose = true;
       
     },
 
-    createEmail() {
-      EmailService.generateEmail(newSubject, newBody, emails.length);
-    }
+    newEmailHandler(subject, body) {
+      EmailService.saveEmail(subject, body);
+      this.showCompose = !this.showCompose;
+    },
+
 }
 }
 </script>

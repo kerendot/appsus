@@ -3,6 +3,7 @@
     <email-preview v-for="currEmail in emails" 
           :key="currEmail.id"
           :email="currEmail"
+          :class="{read:!currEmail.isRead}"
           @archive="archiveEmail(currEmail)"
           @click.native="selectEmail(currEmail)">
     </email-preview>
@@ -25,7 +26,8 @@ export default {
     },
     archiveEmail(email) {
       this.$emit('archive', email);
-    }
+    },
+    
   },
 
   data() {
@@ -38,6 +40,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+
+
 h1, h2 {
   font-weight: normal;
 }

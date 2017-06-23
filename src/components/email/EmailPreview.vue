@@ -1,6 +1,7 @@
 <template>
   <div class="single-email home">
-    <button @click.stop="archiveEmail">X</button>
+    <button @click.stop="archiveEmail"><i class="el-icon-delete"></i>
+</button>
     <h4>{{email.subject}}</h4>
     <p>{{email.body}}</p>   
   </div>
@@ -16,12 +17,8 @@ export default {
     archiveEmail() {
       console.log('activated')
       this.$emit('archive')
-    }
+    },
   }
-// TODO --- MAKE PREVIEW TEXT TO MSGS (text overflow --- ellipsis)
-//   computed: {
-//     textPreview() {}
-// }
 }
 </script>
 
@@ -34,6 +31,10 @@ export default {
   border: 1px solid yellow;
 }
 
+.read {
+  color: red;
+}
+
 h1, h2 {
   font-weight: normal;
 }
@@ -43,17 +44,12 @@ ul {
   padding: 0;
 }
 p {
-    display: flex;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-height: 20px;
+    max-width: 95%;
+    color: grey;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
 a {
   color: #42b983;
 }
