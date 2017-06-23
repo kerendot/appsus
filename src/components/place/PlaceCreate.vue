@@ -2,7 +2,7 @@
     <section class="popup place-create">
         <h1>New Place</h1>
         <label>Name:</label>
-        <input type="text" v-model="name" />
+        <input type="text" v-model="name"/>
         <br/>
         <label>Tags (comma seperated):</label>
         <input type="text" v-model="tags" placeholder="example: food, park, walking"/>
