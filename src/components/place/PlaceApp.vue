@@ -1,13 +1,11 @@
 <template>
   <section>
     <h1> Places </h1>
-   
-    <map-cmp :places="places" :selectedPlace="selectedPlace" 
-      @create="createPlace"></map-cmp>
-    <place-list :places="places" 
-      @select="selectPlace" 
-      @save="savePlace" 
-      @delete="deletePlace">
+  
+    <map-cmp :places="places" :selectedPlace="selectedPlace" @create="createPlace"></map-cmp>
+    <place-create v-if="newPlacePosition" :position="this.newPlacePosition" @save="savePlace" @cancel="closeCreate">
+    </place-create>
+    <place-list :places="places" @select="selectPlace" @save="savePlace" @delete="deletePlace">
     </place-list>
   
   </section>
@@ -19,17 +17,20 @@
 import PlaceService from '../../services/place/place.service';
 import MapCmp from './MapCmp';
 import PlaceList from './PlaceList';
+import PlaceCreate from './PlaceCreate';
 
 export default {
   name: 'place-app',
   components: {
     MapCmp,
-    PlaceList
+    PlaceList,
+    PlaceCreate
   },
   data() {
     return {
       places: null,
       selectedPlace: null,
+      newPlacePosition: null
 
     }
   },
@@ -40,8 +41,8 @@ export default {
     })
   },
   methods: {
-    createPlace(position){
-      console.log('app creating a place with',position);
+    createPlace(position) {
+      this.newPlacePosition = position;
     },
     selectPlace(place) {
       this.selectedPlace = place;
@@ -53,6 +54,11 @@ export default {
 
     savePlace(place) {
       PlaceService.savePlace(place);
+      this.newPlacePosition = null;
+      this.closeCreate();
+    },
+    closeCreate() {
+      this.newPlacePosition = null;
     },
   }
 }

@@ -3,8 +3,7 @@
 
             <h1>I am a marker modal</h1>
              <h2>Save a new Place?</h2>
-            
-            <!--<p>{{place.tags}}</p>-->
+
             <button @click="createPlace">Create</button>
             <button @click="close">x</button>
 
@@ -17,7 +16,6 @@ export default {
     props: [],
     methods: {
         createPlace(){
-            console.log('send create emit to map');
             this.$emit('create')
         },
         close(){
@@ -37,7 +35,6 @@ export default {
     left: 10%;
     top: 10%;
    position: absolute;
-   /*z-index: 9999;*/
    background: #fff;
    border: 1px solid black;
    border-radius: 5px;

@@ -2,15 +2,23 @@
     <section class="popup place-details">
         <button @click="closeMe">x</button>
         <h1>Details of: {{place.name}}</h1>
-        <h3>${{place.tags}}</h3>
+        <!--{{place.tags}}-->
+        <h3>Tags: 
+            <place-tag v-for="(tag, idx) in place.tags" :key="idx" :tag="tag">{{place.tags}}</place-tag>
+        </h3>
         <button @click="requestNextPlace">Next > </button>
     </section>
 </template>
 
 <script>
+import PlaceTag from './PlaceTag'
+
 export default {
     name: 'place-details',
     props: ['place'],
+    components:{
+        PlaceTag
+    },
     methods: {
         closeMe() {
             this.$emit('close');
@@ -19,7 +27,6 @@ export default {
             this.$emit('next');
         }
     }
-
 }
 </script>
 

@@ -5,11 +5,12 @@
     
             <place-details v-if="selectedPlace" @close="resetSelected" @next="selectNext" :place="selectedPlace">
             </place-details>
-            <place-edit v-if="editedPlace || isCreateMode" :place="editedPlace" @save="savePlace" @cancel="closeEdit">
+            <place-edit v-if="editedPlace" :place="editedPlace" @save="savePlace" @cancel="closeEdit">
             </place-edit>
-            <button @click="isCreateMode=true">Add place</button>
             <ul>
-                <place-preview v-for="place in places" :key="place.id" @click.native="selectPlace(place)" @edit="editPlace(place)" @delete="deletePlace(place)" :place="place">
+                <place-preview v-for="place in places" :key="place.id" 
+                @click.native="selectPlace(place)" 
+                @edit="editPlace(place)" @delete="deletePlace(place)" :place="place">
                 </place-preview>
             </ul>
         </div>
@@ -35,7 +36,6 @@ export default {
     data() {
         return {
             editedPlace: null,
-            isCreateMode: false,
            selectedPlace: null
         }
     },
@@ -46,7 +46,9 @@ export default {
 
         },
         selectNext() {
-            this.selectedPlace = PlaceService.getNext(this.selectedPlace);
+            let nextPlace = PlaceService.getNext(this.selectedPlace);
+            this.selectPlace(nextPlace);
+            
         },
         resetSelected() {
             this.selectedPlace = null;
