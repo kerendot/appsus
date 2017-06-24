@@ -50,7 +50,7 @@ export default {
 
 <style scoped>
 .list {
-    width: 30%;
+    width: 35%;
 }
 
 ul {

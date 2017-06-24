@@ -12,7 +12,9 @@
       <ui-modal ref="createModal">
         <div slot="header">
           <h1>Save a new place</h1>
+          
         </div>
+        <h3>{{newPlaceAddress}}</h3>
         <ui-textbox floating-label label="Name" placeholder="Name..." v-model="newPlaceName">
         </ui-textbox>
   
@@ -48,6 +50,7 @@ export default {
       newPlaceName: '',
       newPlaceTags: '',
       newPlacePosition: null,
+      newPlaceAddress: null,
       iconPosition: 'Left'
 
     }
@@ -63,6 +66,7 @@ export default {
       let newPlace = {
         name: this.newPlaceName,
         tags: this.newPlaceTags,
+        address: this.newPlaceAddress,
         position: this.newPlacePosition
       }
       return newPlace;
@@ -75,9 +79,11 @@ export default {
     closeModal(ref) {
       this.$refs[ref].close();
       this.newPlacePosition = null;
+       this.newPlaceAddress = null; 
     },
-    createPlace(position) {
+    createPlace(position, address) {
       this.newPlacePosition = position;
+      this.newPlaceAddress = address;
       this.openModal('createModal');
     },
     selectPlace(place) {
@@ -93,6 +99,7 @@ export default {
       this.closeModal('createModal');
       this.newPlaceName = '';
       this.newPlaceTags = '';
+      this.newPlaceAddress = '';
     },
   }
 }

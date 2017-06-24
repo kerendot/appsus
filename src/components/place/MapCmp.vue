@@ -33,6 +33,7 @@ export default {
       center: CENTER_DEFAULT,
       zoom: ZOOM_DEFAULT,
       inputLatLng: {},
+      inputAddress: null,
       newPosition: null,
       iconPosition: 'left'
     }
@@ -75,6 +76,7 @@ export default {
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng(),
       }
+      this.inputAddress = place.formatted_address;
       let newMarker = { position: this.inputLatLng };
       this.markers.push(newMarker);
       this.zoomTo(this.inputLatLng);
@@ -97,7 +99,7 @@ export default {
       }
     },
     createPlace() {
-      this.$emit('create', this.newPosition);
+      this.$emit('create', this.newPosition, this.inputAddress);
       this.closeModal('createModal');
     },
     zoomTo(position) {
@@ -109,8 +111,6 @@ export default {
   watch: {
     'selectedPlace': function (place, oldPlace) {
       this.zoomTo(place.position);
-      // this.center = place.position;
-      // this.zoom = ZOOM_CLOSE;
     }
   }
 }
@@ -118,7 +118,7 @@ export default {
 
 <style>
 .map-cmp {
-  width: 70%;
+  width: 65%;
 }
 
 .search-input {

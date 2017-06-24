@@ -2,6 +2,7 @@
     <section class="place-preview">
         <li>
             <ui-collapsible @open="selectPlace" :title="place.name">
+                <h4>{{place.address}}</h4>
                 <place-details :place="place">
                 </place-details>
         
