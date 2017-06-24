@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <!--<h2>Keren's Appsus - Home Page</h2>-->
-
+    <h3>HOME!</h3>
   </div>
 </template>
 

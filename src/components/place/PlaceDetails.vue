@@ -1,12 +1,12 @@
 <template>
     <section class="popup place-details">
-        <button @click="closeMe">x</button>
-        <h1>Details of: {{place.name}}</h1>
+        <!--<button @click="closeMe">x</button>-->
+        <!--<h1>Details of: {{place.name}}</h1>-->
         <!--{{place.tags}}-->
-        <h3>Tags: 
+        <h5>Tags: 
             <place-tag v-for="(tag, idx) in place.tags" :key="idx" :tag="tag">{{place.tags}}</place-tag>
-        </h3>
-        <button @click="requestNextPlace">Next > </button>
+        </h5>
+        <!--<button @click="requestNextPlace">Next > </button>-->
     </section>
 </template>
 
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped>
-    .popup {
+    /*.popup {
         background: gold;
         padding: 10px;
         border-radius: 1em;
@@ -39,5 +39,5 @@ export default {
         position: absolute;
         left: 50%;
         top: 80%;
-    }
+    }*/
 </style>

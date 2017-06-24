@@ -30,7 +30,7 @@ export default new Router({
       name: 'BookApp',
       component: BookApp
     },
-   
+
     {
       path: '/place',
       name: 'PlaceApp',

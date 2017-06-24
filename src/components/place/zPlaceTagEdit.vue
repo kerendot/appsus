@@ -1,12 +1,11 @@
 <template>
-    <el-tag type="primary"> {{tag}} </el-tag>
-
+    <input type="text" v-model="tag" />
 </template>
 
 <script>
 export default {
     name: 'place-tag',
-    props: ['tag', 'edit'],
+    props: ['tag'],
     methods: {
 
     }
@@ -14,12 +13,12 @@ export default {
 </script>
 
 <style scoped>
-    /*span {
+    span {
         background: lightgray;
         border: 1px solid black;
         border-radius: 2px;
         text-align: center;
         margin: 5px;
         padding: 5px;
-    }*/
+    }
 </style>

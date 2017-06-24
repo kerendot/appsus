@@ -57,12 +57,7 @@ export default {
   name: 'app',
   data () {
             return {
-               
-                // vm: {
-                //     searchPlace: '',
-                //     location: {}
-
-                // }
+        
             }
         },
 }
