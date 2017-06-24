@@ -1,12 +1,22 @@
 <template>
     <section class="popup place-edit">
-        <h1>Edit: {{place.name}}</h1>
-        <label>Name:</label>
-        <input type="text" v-model="placeToEdit.name" />
-        <label>Tags:</label>
-        <input type="text" v-model="placeToEdit.tags" />
-        <button @click="save">Save</button>
-        <button @click="cancel">Cancel</button>
+        <!--<h1>Edit: {{place.name}}</h1>
+            <label>Name:</label>
+            <input type="text" v-model="placeToEdit.name" />
+            <label>Tags:</label>
+            <input type="text" v-model="placeToEdit.tags" />
+            <button @click="save">Save</button>
+            <button @click="cancel">Cancel</button>-->
+    
+        <ui-modal ref="modal5">
+            <div slot="header">
+                <h1>Edit: {{place.name}}</h1>
+            </div>
+    
+            Hey, some
+            <b>nice</b> text here.
+        </ui-modal>
+    
     </section>
 </template>
 
@@ -20,6 +30,8 @@ export default {
         }
     },
     created() {
+       
+        // this.$refs['modal5'].open();
         this.placeToEdit = Object.assign({}, this.place)
     },
     methods: {
@@ -28,8 +40,11 @@ export default {
         },
         cancel() {
             this.$emit('cancel');
-        }
-    }
+        },
+
+
+    },
+    
 }
 </script>
 

@@ -9,11 +9,6 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    //   {
-    //   path: '/',
-    //   name: 'Home',
-    //   component: Home
-    // },
     {
       path: '/',
       name: 'Home',
@@ -29,7 +24,7 @@ export default new Router({
       name: 'BookApp',
       component: BookApp
     },
-   
+
     {
       path: '/place',
       name: 'PlaceApp',

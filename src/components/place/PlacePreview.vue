@@ -1,24 +1,81 @@
 <template>
     <section class="place-preview">
         <li>
-            <h1>{{place.name}}</h1>
-            <!--<p>{{place.tags}}</p>-->
-            <button @click.stop="editPlace">&#9998;</button>
-            <button @click.stop="deletePlace">x</button>
+            <ui-collapsible @open="selectPlace" :title="place.name">
+                <place-details :place="place">
+                </place-details>
+        
+                <ui-icon-button @click.stop="deletePlace" icon="delete" tooltip="Delete" tooltip-position="top center"></ui-icon-button>
+                <ui-icon-button @click.stop="editPlace" icon="edit" tooltip="Edit" tooltip-position="top center"></ui-icon-button>
+           
+                <ui-modal ref="editModal">
+                    <div slot="header">
+                        <h1>Edit Saved Place: {{place.name}}</h1>
+                    </div>
+                      
+                    <ui-textbox floating-label label="Name" 
+                    placeholder="Enter your name" 
+                    v-if="editMode"
+                    v-model="placeToEdit.name"></ui-textbox>
+                    
+                     <ui-textbox floating-label label="Tags (comma seperated)" 
+                    placeholder="Enter comma seperated tags" 
+                    v-if="editMode"
+                    v-model="placeToEdit.tags"></ui-textbox>
+
+                    <ui-button @click="save" color="primary" icon="done" :icon-position="iconPosition" type="secondary">Apply</ui-button>
+                    <!--<ui-button @click="cancel" color="orange" icon="delete" :icon-position="iconPosition" type="secondary">Dismiss</ui-button>-->
+                            
+                </ui-modal>
+    
+            </ui-collapsible>
+    
         </li>
     </section>
 </template>
 
 <script>
+import PlaceDetails from './PlaceDetails';
+
 export default {
     name: 'place-preview',
     props: ['place'],
+    components: {
+        PlaceDetails,
+    },
+    data() {
+        return {
+            editMode: false,
+            placeToEdit:null,
+            iconPosition:'Left'
+        }
+    },
     methods: {
+        openModal(ref) {
+            this.$refs[ref].open();
+        },
+        closeModal(ref) {
+            this.$refs[ref].close();
+            this.editMode = false;
+        },
         editPlace() {
-            this.$emit('edit');
+            this.placeToEdit = JSON.parse(JSON.stringify(this.place));
+            this.placeToEdit.tags =  this.placeToEdit.tags.join(', ');
+            this.editMode = true;
+            this.openModal('editModal');
         },
         deletePlace() {
             this.$emit('delete');
+        },
+        selectPlace() {
+            this.$emit('select');
+        },
+        save() {
+            this.closeModal('editModal');
+            this.$emit('save', this.placeToEdit);
+        },
+        cancel() {
+            this.closeModal('editModal');
         },
     }
 
@@ -26,10 +83,5 @@ export default {
 </script>
 
 <style scoped>
-li {
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
-}
+
 </style>

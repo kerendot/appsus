@@ -50,6 +50,7 @@ export default {
     border-radius: 1em;
     text-align: center;
     position: absolute;
+    z-index: 99;
     left: 40%;
     top: 50%;
     

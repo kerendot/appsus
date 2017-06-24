@@ -7,10 +7,6 @@
     <router-link to="/place">Places</router-link>
     <router-view></router-view>
 
-    <!--<input v-model=vm.searchPlace v-gmaps-searchbox:location=vm>
-    {{vm}}-->
-
-
   </div>
 </template>
 
@@ -19,12 +15,7 @@ export default {
   name: 'app',
   data () {
             return {
-               
-                // vm: {
-                //     searchPlace: '',
-                //     location: {}
-
-                // }
+        
             }
         },
 }
