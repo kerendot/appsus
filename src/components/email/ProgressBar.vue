@@ -1,32 +1,25 @@
 <template>
-  <div class="home">
-    <h2>Email status!</h2>
-    <progress-bar> 
-
-    </progress-bar>
+  <div>
+    <h3> Progress Bar </h3>
+      
   </div>
 </template>
 
 <script>
-import ProgressBar from './ProgressBar'
 
-export default {
-  name: 'email-status',
+export default {  
+  name: 'progress-bar',
   props: ['emails'],
-  components: {
-    ProgressBar,
-  },
   methods: {
-  },
-  computed: {
-  
-}
+    
+  }
 }
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 h1, h2 {
   font-weight: normal;
 }

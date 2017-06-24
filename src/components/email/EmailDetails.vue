@@ -1,6 +1,7 @@
 <template>
   <div v-if="email">
-    
+    <button @click.stop="archiveEmail(email)"><i class="el-icon-delete"></i>
+    </button>
     <h3> {{email.subject}} </h3>
     <p> {{email.body}} </p>
       
@@ -13,6 +14,9 @@ export default {
   name: 'email-details',
   props: ['email'],
   methods: {
+    archiveEmail(email) {
+      this.$emit('archiveEmail', email)
+    }
 }
 }
 

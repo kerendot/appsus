@@ -1,8 +1,18 @@
 <template>
-  <div>
-    <input v-model="newSubject" type="text" placeholder="Enter subject">
-    <textarea v-model="newBody" type="text" placeholder="write some words..."></textarea>
-    <button @click="newMail">Send Email</button>   
+  <div >
+    <el-form class="compose" ref="form" :model="form">
+      <el-form-item>
+        <h3>Compose new email</h3>        
+        <el-input placeholder="Subject" v-model="newSubject"></el-input>
+      </el-form-item>
+      <el-form-item >
+        <el-input placeholder="Write something" type="textarea" v-model="newBody"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="newMail">Send</el-button>
+        <el-button>Cancel</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
@@ -31,23 +41,18 @@ export default {
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+<style lang="scss" scoped>
+.compose {
+  h3 {
+    text-align: center;   
+  }
+    background: lightgray;
+    padding: 0px 100px 0px 100px;
+    border-radius: 1em;
+    text-align: center;
+    position: absolute;
+    left: 35%;
+    top: 30%;  
+  
 }
 </style>

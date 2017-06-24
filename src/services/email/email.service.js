@@ -1,6 +1,3 @@
-
-// Client Side State of the store
-// Kind of caching...
 var emails = [];
 var archived = [];
 

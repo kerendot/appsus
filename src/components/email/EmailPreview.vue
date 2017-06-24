@@ -2,7 +2,7 @@
   <div class="single-email home">
     <button @click.stop="archiveEmail"><i class="el-icon-delete"></i>
 </button>
-    <h4>{{email.subject}}</h4>
+    <h3>{{email.subject}}</h3>
     <p>{{email.body}}</p>   
   </div>
 </template>
@@ -23,33 +23,29 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
+
 
 .single-email {
   text-align: left;
   padding-left: 10px;
   border: 1px solid yellow;
-}
-
-.read {
-  color: red;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-p {
+  h3 {
+    margin: 0;
+  }
+  p {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 95%;
-    color: grey;
+  } 
 }
+.read {
+  color: red;
+  font-weight: bold;
+
+}
+
 a {
   color: #42b983;
 }
