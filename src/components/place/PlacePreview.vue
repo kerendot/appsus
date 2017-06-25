@@ -1,8 +1,9 @@
 <template>
     <section class="place-preview">
         <li>
-            <ui-collapsible id="test" @open="selectPlace" :title="place.name" :open="false">
+            <ui-collapsible id="test" @open="selectPlace" :title="place.name" :open="isExpanded">
                 <h4>{{place.address}}</h4>
+               
                 <place-details :place="place">
                 </place-details>
     
@@ -34,7 +35,7 @@ import PlaceDetails from './PlaceDetails';
 
 export default {
     name: 'place-preview',
-    props: ['place'],
+    props: ['place','isExpanded'],
     components: {
         PlaceDetails,
     },
@@ -45,6 +46,15 @@ export default {
             iconPosition: 'Left'
         }
     },
+    // created(){
+    //     this.isExpanded = (this.idxToExpand === this.place.id);
+    // },
+    // computed: {
+    //     isExpanded: () => {
+    //         if(this.place)
+    //         return this.idxToExpand === this.place[id];
+    //     }
+    // },
     methods: {
         openModal(ref) {
             this.$refs[ref].open();

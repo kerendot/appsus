@@ -2,13 +2,14 @@
     <section v-if="places" class="list">
         <h2>Your saved places</h2>
         <ul>
-            <place-preview v-for="place in places" 
-            :key="place.id" 
-            @select="selectPlace(place)" 
-            @edit="editPlace(place)"
-            @delete="deletePlace(place)" 
-            @save="savePlace" 
-            :place="place">
+            <place-preview v-for="(place, idx) in places" 
+                :key="place.id" 
+                @select="selectPlace(place)" 
+                @edit="editPlace(place)"
+                @delete="deletePlace(place)" 
+                @save="savePlace" 
+                :place="place"
+                :isExpanded="idx === idxToExpand">
             </place-preview>
         </ul>
     </section>
@@ -20,7 +21,7 @@ import PlacePreview from './PlacePreview';
 
 export default {
     name: 'place-list',
-    props: ['places'],
+    props: ['places', 'idxToExpand'],
     components: {
         PlacePreview,
     },

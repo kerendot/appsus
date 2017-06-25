@@ -1,10 +1,11 @@
 <template>
   <section class="map-cmp">
-<!--<button @click="infoMsg">test</button>-->
+    <!--<button @click="infoMsg">test</button>-->
+    <h2> Search for a place to save</h2>
     <ui-button color="orange" type="primary" @click.native="resetZoom">Reset Zoom</ui-button>
     <gmap-autocomplete class="search-input" @place_changed="setPlace">
     </gmap-autocomplete>
-    <gmap-map class="map" :center="center" :zoom="zoom" style="width: 100%; height: 500px">
+    <gmap-map class="map" :center="center" :zoom="zoom">
       <ui-modal slot="visible" @create="createPlace" ref="createModal">
         <div slot="header">
           <h1>Save as a new place?</h1>
@@ -58,8 +59,8 @@ export default {
         offset: 100
       })
     },
-    
-      openModal(ref) {
+
+    openModal(ref) {
       this.$refs[ref].open();
     },
     closeModal(ref) {
@@ -97,6 +98,10 @@ export default {
         this.newPosition = clickedMarkerPosition;
         this.openModal('createModal');
       }
+      else{
+        //expand relevant place in the list
+        this.$emit('expand', placeIdx)
+      }
     },
     createPlace() {
       this.$emit('create', this.newPosition, this.inputAddress);
@@ -125,5 +130,10 @@ export default {
   width: 90%;
   max-width: 300px;
   margin: 10px;
+}
+
+.map {
+  width: 100%;
+  height: 500px;
 }
 </style>

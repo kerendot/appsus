@@ -1,12 +1,9 @@
 <template>
   <section>
-    <h1> Places </h1>
-    <!--<place-create v-if="newPlacePosition" :position="this.newPlacePosition" @save="savePlace" @cancel="closeCreate">
-        </place-create>-->
     <section class="main-area">
-      <map-cmp :places="places" :selectedPlace="selectedPlace" @create="createPlace"></map-cmp>
+      <map-cmp :places="places" :selectedPlace="selectedPlace" @create="createPlace" @expand="expandSelected"></map-cmp>
   
-      <place-list :places="places" @select="selectPlace" @save="savePlace" @delete="deletePlace">
+      <place-list :places="places" @select="selectPlace" @save="savePlace" @delete="deletePlace" :idxToExpand="idxToExpand">
       </place-list>
   
       <ui-modal ref="createModal">
@@ -51,8 +48,8 @@ export default {
       newPlaceTags: '',
       newPlacePosition: null,
       newPlaceAddress: null,
-      iconPosition: 'Left'
-
+      iconPosition: 'Left',
+      idxToExpand: null
     }
   },
 
@@ -101,6 +98,9 @@ export default {
       this.newPlaceTags = '';
       this.newPlaceAddress = '';
     },
+    expandSelected(placeIdx){
+      this.idxToExpand = placeIdx;
+    }
   }
 }
 </script>
