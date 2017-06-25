@@ -14,7 +14,6 @@ export default {
   props: ['email'],
   methods: {
     archiveEmail() {
-      console.log('activated')
       this.$emit('archive')
     },
   }

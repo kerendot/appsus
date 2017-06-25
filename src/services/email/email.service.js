@@ -25,7 +25,6 @@ function getEmailById(emailId) {
 }
 
 function archiveEmail(email) {
-  console.log('Archiving the email', email)
   var idx = emails.indexOf(email)
   emails.splice(idx, 1);
   archived.push(idx);
@@ -40,21 +39,17 @@ function getNext(email) {
 }
 
 function saveEmail(subject, body) {
-
-  console.log('new mail is in handler')
-
   var newEmail = {
     id: emails.length + 1,
-    subject: `${subject}`,
-    body: `${body}`,
+    subject,
+    body,
     isRead: false
   }
 
+// timeout - to simultae server processing
   setTimeout(function () {
     emails.unshift(newEmail);
-    alert('you have new mail!')
   }, 2000);
-  // console.log(newEmail)
 };
 
 // Used to create local data with no AJAX
