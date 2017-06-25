@@ -1,228 +1,78 @@
 <template>
   <div class="home">
     <!--<h2>Keren's Appsus - Home Page</h2>-->
-    <h3>HOME!</h3>
+    <el-col class="col">
+      <el-card class="card">
+        <img src="http://marketingland.com/wp-content/ml-loads/2014/08/email-data-blue-ss-1920-800x450.jpg" class="image">
+        <div>
+          <div class="bottom">
+            <el-button type="text" class="button">
+              <router-link to="/email">EMAILS </router-link>
+            </el-button>
   
-    <!-- works -->
-    <div id="works" class="clearfix grid">
-      <figure class="effect-oscar  wowload fadeInUp">
-  
-        <img src="/assets/lab.jpg" alt="img01">
-        <figcaption>
-          <h2>Nature</h2>
-          <p>Lily likes to play with crayons and pencils
-            <br>
-            <a href="images/portfolio/1.jpg" title="1" data-gallery>View more</a>
-          </p>
-        </figcaption>
-      </figure>
-      <figure class="effect-oscar  wowload fadeInUp">
-        <!--<img src="images/portfolio/2.jpg" alt="img01"/>-->
-        <figcaption>
-          <h2>Events</h2>
-          <p>Lily likes to play with crayons and pencils
-            <br>
-            <a href="images/portfolio/2.jpg" title="1" data-gallery>View more</a>
-          </p>
-        </figcaption>
-      </figure>
-      <figure class="effect-oscar  wowload fadeInUp">
-        <!--<img src="images/portfolio/3.jpg" alt="img01"/>-->
-        <figcaption>
-          <h2>music</h2>
-          <p>Lily likes to play with crayons and pencils
-            <br>
-            <a href="images/portfolio/3.jpg" title="1" data-gallery>View more</a>
-          </p>
-        </figcaption>
-      </figure>
-  
-    </div>
-    </div>
+          </div>
+        </div>
+      </el-card>
+      <el-card class="card">
+        <img src="http://az616578.vo.msecnd.net/files/2016/01/03/635873821517718970351055939_Stack-of-books-great-education.jpg" class="image">
+        <div>
+          <div class="bottom">
+            <el-button type="text" class="button">
+              <router-link to="/book">BOOKS STORE </router-link>
+            </el-button>
+          </div>
+        </div>
+      </el-card>
+      <el-card class="card">
+        <img src="https://previews.123rf.com/images/tovovan/tovovan1312/tovovan131200017/24170069-Abstract-city-map-with-places-of-interest-Stock-Vector-location.jpg" class="image">
+        <div>
+          <div class="bottom">
+            <el-button type="text" class="button">
+              <router-link to="/place">PLACES </router-link>
+            </el-button>
+          </div>
+        </div>
+      </el-card>
+    </el-col>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'home',
-  data() {
-    return {
-    }
-  }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-/*works*/
-
-#works {
-  padding-top: 6em;
+.home {
+  display: flex;
+  overflow-x: hidden;
 }
 
-#works figcaption a {
-  border: 1px solid #fff;
-  margin-top: 1em;
-  display: inline-block;
-  color: #fff;
-  padding: 0 2em;
+.col {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-#works figcaption a:hover {
-  text-decoration: none;
-  padding: 0 3em;
+.card {
+  width: 33%;
+  }
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
 }
 
-
-/*works*/
-
-.gototop {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  color: #fff;
+.image {
+  width: 100%;
 }
 
-.gototop i {
-  line-height: 0.5em;
+a{color:#00a9c6; text-decoration:none; text-transform: uppercase; font-size: 20px;}
+a:hover{color:#666;}
+.btn,a,.btn:hover,a:hover {
+transition: all 0.3s ease-in-out;
+outline: none !important;
 }
 
-
-@media (max-width: 1200px) {
-  body {
-    font: 300 13px/13px Roboto, Arial, Helvetica;
-  }
-  .navbar-brand {
-    padding-top: 11px;
-  }
-  .process ul li {
-    margin: 0 0.5em;
-  }
-
-  .grid figure h2 {
-    font: 700 1.5em Roboto, Arial, Helvetica;
-  }
-  figure.effect-oscar figcaption {
-    padding: 12%;
-  }
-  figure.effect-oscar figcaption::before,
-  figure.effect-chico figcaption::before {
-    top: 20px;
-    right: 20px;
-    bottom: 20px;
-    left: 20px;
-  }
-
-  .partners img {
-    margin: 0 25px 25px 0;
-  }
-}
-
-@media (max-width: 900px) {
-  h1 {
-    font: 700 3.5em Roboto, Arial, Helvetica;
-  }
-  h4 {
-    font: 300 1.3em Roboto, Arial, Helvetica;
-  }
-  .btn {
-    padding: 1em 2em;
-  }
-  .partners img {
-    margin: 0 15px 25px 0;
-    width: 157px;
-  }
-  .process ul li {
-    width: 9em;
-    height: 9em;
-  }
-  figure.effect-chico figcaption {
-    padding: 2em;
-  }
-  figure.effect-oscar figcaption {
-    padding: 20%;
-  }
-  figure.effect-chico figcaption::before {
-    top: 10px;
-    right: 10px;
-    bottom: 10px;
-    left: 10px;
-  }
-  .grid figure.effect-chico p {
-    font-size: 0.6em;
-    line-height: 1.5em;
-  }
-}
-
-
-@media (max-width: 767px) {
-  body {
-    font: 300 12px/12px Roboto, Arial, Helvetica;
-  }
-  .navbar-nav>li>a {
-    line-height: 1em;
-  }
-  .navbar-brand {
-    padding: 7px;
-  }
-  .navbar-brand img {
-    height: 37px;
-  }
-  .navbar-toggle {
-    margin-top: 12px;
-  }
-
-
-  h2.text-center {
-    text-align: left;
-    font-size: 1.7em;
-  }
-  h4 {
-    font: 300 1.2em Roboto, Arial, Helvetica;
-  }
-  #partners h2 {
-    padding: 0 1em;
-  }
-  #works {
-    padding-top: 5em;
-  }
-
-  .partners {
-    display: block;
-    float: left;
-  }
-  .partners img {
-    width: 120px;
-  }
-
-
-
-  .about.spacer {
-    padding-left: 2em;
-    padding-right: 2em;
-  }
-  .spacer {
-    padding: 2em 0 0 0;
-  }
-  .process ul li {
-    margin-bottom: 1em;
-  }
-
-  .highlight-info .overlay {
-    padding-bottom: 2em;
-  }
-
-  .grid.team div {
-    margin: 0;
-    padding: 0;
-  }
-  figure.effect-chico figcaption {
-    padding: 1.5em;
-  }
-  .footer {
-    margin-top: 2em;
-    padding-bottom: 2em;
-  }
-}
 </style>
