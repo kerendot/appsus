@@ -21,7 +21,7 @@
   
     <email-status class="email-status" :readPerc="readPerc">
     </email-status>
-
+  
   </div>
 </template>
 
@@ -56,14 +56,18 @@ export default {
     }
   },
   created() {
-    EmailService.getEmails().then(emails => {
-      this.emails = emails;
-      this.selectedEmail = emails[0];
-      this.emailsCountPrev = emails.length;
-    })
+    EmailService.getEmails()
+      .then(res => {
+        this.emails = res.data;
+        this.selectedEmail = this.emails[0];
+        this.emailsCountPrev = this.emails.length;
+      })
+      .catch(error => {
+        console.log(error);
+      })
   },
   computed: {
-    
+
     emailsToDisplay: function () {
       let filtered = this.emails;
       let filterObj = this.filter;
@@ -91,11 +95,16 @@ export default {
       else return 0;
     },
     //this prop used to identify when new email arrives and alert the user
-    emailsLength: function(){
-      if (this.emails && this.emailsCountPrev){
-          if (this.emails.length > this.emailsCountPrev)
-            this.$message('You have new email');
-          return this.emails.length;
+    emailsLength: function () {
+      if (this.emails && this.emailsCountPrev) {
+        if (this.emails.length > this.emailsCountPrev){
+          this.$message('You have new email');
+          this.emailsCountPrev++;
+        }
+        if (this.emails.length < this.emailsCountPrev){
+          this.emailsCountPrev--;
+        }
+        return this.emails.length;
       }
     },
   },
@@ -104,11 +113,17 @@ export default {
       this.selectedEmail = email;
       setTimeout(function () {
         if (!email.isRead) return email.isRead = true;
-      }, 1000);
+      }, 500);
     },
     archiveEmail(email) {
       EmailService.archiveEmail(email)
-      this.selectedEmail = this.emails[0];
+      .then(res => {
+          this.emails = res.data;
+          this.selectedEmail = this.emails[0];
+      })
+      .catch(error => {
+        console.log(error);
+      })
     },
     openComposeMsg() {
       this.showCompose = true;
@@ -117,16 +132,18 @@ export default {
       this.showCompose = false;
     },
     newEmailHandler(subject, body) {
-      EmailService.saveEmail(subject, body);
       this.closeComposeMsg();
+      EmailService.saveEmail(subject, body)
+      .then(res => {
+        this.emails = res.data;
+      })
+      .catch(error => {
+        console.log(error);
+      })
     },
     setFilter(ev) {
       this.filter = ev;
     }
-  },
-  watch:{
-    
-
   }
 }
 </script>
@@ -140,11 +157,11 @@ export default {
 .home {
   .email-box {
     flex-direction: row;
-    margin-top: 10px; 
+    margin-top: 10px;
   }
 
   .list-filter {
-        width: 40%;
+    width: 40%;
   }
   .email-list {
     // width: 40%;
