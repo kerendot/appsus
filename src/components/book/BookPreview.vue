@@ -7,6 +7,8 @@
         <button @click.stop="deleteBook">x</button>
         <button @click.stop="addToCart">+</button>
         <button @click.stop="subtractFromCart">-</button>
+        <br/>
+        <router-link :to="`/book/${book.id}`">View Book</router-link>
     </li>
 </template>
 
@@ -14,6 +16,7 @@
 export default {
     // name: 'book-preview',
     props: ['book'],
+    
     methods: {
 
         editBook() {

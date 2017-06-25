@@ -96,6 +96,7 @@ function generateBook(skill, i) {
 
 export default {
   getBooks,
+  getBookById,
   deleteBook,
   getNext,
   saveBook

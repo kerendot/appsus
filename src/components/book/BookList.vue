@@ -10,14 +10,7 @@
             <book-edit v-if="editedBook || isCreateMode" :book="editedBook" @save="saveBook" @cancel="closeEdit">
             </book-edit>
             <ul>
-                <book-preview v-for="currBook in booksToDisplay" 
-                :key="currBook.id" 
-                @click.native="selectBook(currBook)" 
-                @edit="editBook(currBook)" 
-                @delete="deleteBook(currBook)" 
-                @add="addToCart(currBook)" 
-                @subtract="subtractFromCart(currBook)"
-                :book="currBook">
+                <book-preview v-for="currBook in booksToDisplay" :key="currBook.id" @click.native="selectBook(currBook)" @edit="editBook(currBook)" @delete="deleteBook(currBook)" @add="addToCart(currBook)" @subtract="subtractFromCart(currBook)" :book="currBook">
                 </book-preview>
             </ul>
     
@@ -74,6 +67,8 @@ export default {
             this.selectedBook = null;
         },
         selectNext() {
+            console.log('selectNext is hit')
+            console.log('selectedBook:', this.selectedBook.title)
             this.selectedBook = BookService.getNext(this.selectedBook);
         },
         editBook(book) {
