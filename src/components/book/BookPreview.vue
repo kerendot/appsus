@@ -1,14 +1,20 @@
 <template>
     <li class="card product book-preview">
         <h2>{{book.title}}</h2>
-        <img src="http://via.placeholder.com/250x150">
+        <img :src="book.img">
         <h3>${{book.price}}</h3>
-        <button @click.stop="editBook">&#9998;</button>
-        <button @click.stop="deleteBook">x</button>
-        <button @click.stop="addToCart">+</button>
-        <button @click.stop="subtractFromCart">-</button>
+        <hr>        
+        <el-button-group>
+            <el-button class="el-icon-plus" @click.stop="addToCart" type="success"></el-button>
+            <el-button class="el-icon-minus" @click.stop="subtractFromCart" type="warning"></el-button>
+            <el-button class="el-icon-edit" @click.stop="editBook" type="info"></el-button>
+            <el-button class="el-icon-delete" @click.stop="deleteBook" type="danger"></el-button>
+        </el-button-group>
+    
         <br/>
-        <router-link :to="`/book/${book.id}`">View Book</router-link>
+        <el-button :plain="true" type="info" class="view" >
+            <router-link class="el-icon-information view-more" :to="`/book/${book.id}`"> VIEW BOOK</router-link>
+        </el-button>
     </li>
 </template>
 
@@ -16,7 +22,7 @@
 export default {
     // name: 'book-preview',
     props: ['book'],
-    
+
     methods: {
 
         editBook() {
@@ -37,3 +43,29 @@ export default {
 }
 </script>
 
+<style lang="scss">
+img {
+    max-width: 200px;
+}
+
+.view {
+    margin-top: 10px;
+    .view-more {
+        font: normal 16px/normal "Advent Pro", Helvetica, sans-serif;
+        text-decoration: none;    
+        color: darkcyan;
+        
+    }
+    .view-more:visited {
+        color: darkcyan;
+    }
+}
+
+.book-preview {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+</style>

@@ -1,16 +1,19 @@
 <template>
-    <section class="flex-2" v-if="books">
+    <section class="books" v-if="books">
         <div>
-            <h2>We have {{books.length}} Books</h2>
-            <button @click="isCreateMode=true">Add new book</button>
-            <filter-book @filter="setFilter">
-            </filter-book>
-            <book-details v-if="selectedBook" @close="resetSelected" @next="selectNext" :book="selectedBook">
+            <div class="actions">
+                <filter-book class="filter" @filter="setFilter">
+                </filter-book>
+                <el-button :plain="true" type="success" @click="isCreateMode=true">Add new book</el-button>
+            </div>
+            
+            
+            <book-details class="details" v-if="selectedBook" @close="resetSelected" @next="selectNext" :book="selectedBook">
             </book-details>
-            <book-edit v-if="editedBook || isCreateMode" :book="editedBook" @save="saveBook" @cancel="closeEdit">
+            <book-edit class="edit" v-if="editedBook || isCreateMode" :book="editedBook" @save="saveBook" @cancel="closeEdit">
             </book-edit>
             <ul>
-                <book-preview v-for="currBook in booksToDisplay" :key="currBook.id" @click.native="selectBook(currBook)" @edit="editBook(currBook)" @delete="deleteBook(currBook)" @add="addToCart(currBook)" @subtract="subtractFromCart(currBook)" :book="currBook">
+                <book-preview class="preview" v-for="currBook in booksToDisplay" :key="currBook.id" @click.native="selectBook(currBook)" @edit="editBook(currBook)" @delete="deleteBook(currBook)" @add="addToCart(currBook)" @subtract="subtractFromCart(currBook)" :book="currBook">
                 </book-preview>
             </ul>
     
@@ -100,18 +103,27 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 ul {
     list-style: none;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    padding: 10px;
+    justify-content: space-between;    
 }
 
-li {
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
+
+.books {
+    display: flex;
+    .actions {
+        display: flex;    
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 1em;
+    }
+    .filter {
+        text-align: left;
+        
+    }
 }
 </style>
