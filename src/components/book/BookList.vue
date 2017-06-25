@@ -119,8 +119,20 @@ ul {
         display: flex;    
         flex-direction: row;
         justify-content: space-between;
-        padding-bottom: 1em;
+        padding: {
+            bottom: 1em;
+            left: 1em;
+            right: 1em;
+        }
     }
+    button {
+        height: 40px;
+        font-family: Gentium Book Basic;
+        text-transform: uppercase;
+        margin-left: 20px;
+        align-self: flex-end;
+
+    }    
     .filter {
         text-align: left;
         

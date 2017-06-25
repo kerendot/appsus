@@ -8,8 +8,8 @@
         </div>
     
         <p class="title is-3">Total of: {{totalPrice}} $</p>
-        <button class="button is-success is-medium" @click="doCheckout">Checkout</button>
-    
+        <el-button :plain="true" type="info" @click="doCheckout">Checkout</el-button>    
+
         <check-out v-if="isCheckout" :totalPrice="totalPrice" @close="closeCheckout">
         </check-out>
         <hr>
@@ -76,6 +76,7 @@ export default {
         padding: 5px;
     }
     h3 {
+        color: darkcyan;        
         background: lightgrey;
         padding: 5px;
         margin: 10px;

@@ -1,7 +1,8 @@
 <template>
     <section class="popup">
-        <button @click="closeMe">x</button>
         <h1>Purchase total price: {{totalPrice}} $</h1>
+        <el-button :plain="true" type="info" @click="closeMe">cool !</el-button>
+        
     </section>
 </template>
 
@@ -17,14 +18,26 @@ export default {
 }
 </script>
 
-<style scoped>
-    .popup {
-        background: gold;
-        padding: 10px;
-        border-radius: 1em;
-        text-align: center;
-        position: absolute;
-        left: 40%;
-        top: 50%;
+<style lang="scss" scoped>
+.popup {
+    background: rgba(232, 232, 232, 1);
+    padding: 40px;
+    box-shadow: 0 0 9px 4px rgba(47, 64, 68, 0.5);
+    text-align: center;
+    position: fixed;
+    left: 40%;
+    top: 20%;
+    h1 {
+        color: darkcyan;
+        margin-top: 0px;
     }
+    i {
+        float: left;
+    }
+    button { 
+        font-family: Gentium Book Basic;
+        text-transform: uppercase;
+    }
+    
+}
 </style>

@@ -1,10 +1,12 @@
 <template>
     <section>
-        <h1>Filter books by:</h1>
-        <label>Title:</label>
-        <input type="text" @input="setFilter" v-model="filterBy.title" />
-        <label>Minimum Price:</label>
-        <input type="number" min="0" @keyup="setFilter" v-model="filterBy.minPrice" />
+        <h1>Search books:</h1>
+        <p class="search">
+        <label>title:</label> <br>
+        <el-input type="text" @input="setFilter" v-model="filterBy.title" /> 
+        <label>price:</label> <br>        
+        <el-input placeholder="Search by minimun price" type="number" @keyup="setFilter" v-model="filterBy.minPrice" />
+        </p>
     </section>
 </template>
 
@@ -27,3 +29,14 @@ export default {
     }
 }
 </script>
+<style lang="scss">
+    .search {
+        display: flex;
+        align-items: center;
+        label {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+    }
+    
+</style>

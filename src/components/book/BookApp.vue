@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2> bookstore </h2>    
+    <h1> our bookstore </h1>    
     <div class="book-home">      
       <book-list class="book-list"></book-list>
       <cart-details class="cart-details"></cart-details>
@@ -35,9 +35,9 @@ export default {
     text-transform: uppercase;
     display: flex;
     flex-direction: column;
-        
-    h2{
-      padding-top: 80px;
+
+    h1{
+      padding-bottom: 20px;
       width: 100%;
       align-items: center;
     }
