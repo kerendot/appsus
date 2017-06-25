@@ -1,7 +1,6 @@
 <template>
   <div v-if="email">
-    <button @click.stop="archiveEmail(email)"><i class="el-icon-delete"></i>
-    </button>
+    <i class="el-icon-close" @click.stop="archiveEmail(email)"></i>
     <h3> {{email.subject}} </h3>
     <p> {{email.body}} </p>
       
@@ -24,22 +23,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  i {
+    float: left;
+    padding: 15px;
+  }
 
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
+  h3 {
+    color: rgba(54,155,181,1);
+  }
 </style>

@@ -3,7 +3,7 @@
     <email-preview v-for="currEmail in emails" 
           :key="currEmail.id"
           :email="currEmail"
-          :class="{read:!currEmail.isRead}"
+          :class="{unread:!currEmail.isRead}"
           @archive="archiveEmail(currEmail)"
           @click.native="selectEmail(currEmail)">
     </email-preview>

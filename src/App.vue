@@ -40,7 +40,6 @@
     {{vm}}-->
 
 
-  </div>
 </template>
 
 <script>
