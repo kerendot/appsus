@@ -1,7 +1,7 @@
 <template>
     <section class="place-preview">
         <li>
-            <ui-collapsible id="test" @open="selectPlace" :title="place.name">
+            <ui-collapsible id="test" @open="selectPlace" :title="place.name" :open="false">
                 <h4>{{place.address}}</h4>
                 <place-details :place="place">
                 </place-details>

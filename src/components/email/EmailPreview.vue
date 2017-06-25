@@ -14,7 +14,6 @@ export default {
   props: ['email'],
   methods: {
     archiveEmail() {
-      console.log('activated')
       this.$emit('archive')
     },
   }
@@ -23,6 +22,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+h3:hover, .el-icon-close:hover{
+  cursor: pointer;
+}
 .single-email {
   text-align: left; 
   border: 1px solid yellow; 
