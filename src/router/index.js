@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import EmailApp from '@/components/email/EmailApp'
 import BookApp from '@/components/book/BookApp'
+import BookDetails from '@/components/book/BookDetails'
 import PlaceApp from '@/components/place/PlaceApp'
 
 import Element from 'element-ui'
@@ -30,7 +31,11 @@ export default new Router({
       name: 'BookApp',
       component: BookApp
     },
-
+    {
+      path: '/book/:bookId',
+      name: 'BookDetails',
+      component: BookDetails
+    },
     {
       path: '/place',
       name: 'PlaceApp',
