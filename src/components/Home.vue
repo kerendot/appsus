@@ -47,11 +47,11 @@ export default {
 <style scoped lang="scss">
 .home {
   display: flex;
-  overflow-x: hidden;
 }
 
 .col {
   display: flex;
+  overflow: hidden;  
   justify-content: center;
   width: 100%;
 }

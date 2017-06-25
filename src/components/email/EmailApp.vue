@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <h2>You have {{emailsLength}} emails</h2>
     <!-- NEW MSG -->
+    <br>
     <el-button v-show="!showCompose" @click="openComposeMsg"> Compose </el-button>
   
     <email-compose v-show="showCompose" @newMail="newEmailHandler" @cancel="closeComposeMsg">
@@ -182,7 +182,6 @@ ul {
 
 li {
   display: inline-block;
-  margin: 0 10px;
 }
 
 a {

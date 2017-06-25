@@ -71,9 +71,9 @@ export default {
     }
     .card {
         width: 200px;
-        border: 1px solid grey;
+        border-bottom: 2px solid lightgrey;
         margin: 5px;
-        padding: 5px;
+        padding: 15px;
     }
     h3 {
         color: darkcyan;        
