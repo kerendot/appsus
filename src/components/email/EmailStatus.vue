@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <h2>Read emails:</h2>
-    <el-progress v-if="readPerc" :percentage="readPerc"></el-progress>
+    <el-progress :percentage="readPerc"></el-progress>
   </div>
 </template>
 

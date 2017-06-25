@@ -166,7 +166,6 @@ export default {
   .email-list {
     // width: 40%;
     margin: 5px;
-    border: 2px solid brown;
 
     background-image: linear-gradient(180deg, rgba(255, 255, 255, 1) 0, rgba(247, 245, 185, 1) 100%);
     background-position: 50% 50%;
@@ -177,8 +176,7 @@ export default {
   .email-details {
     width: 60%;
     margin: 5px;
-    border: 2px solid brown;
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 1) 0, rgba(247, 245, 185, 1) 100%);
+    border: 2px solid lightgrey;
     background-position: 50% 50%;
     background-origin: padding-box;
     background-clip: border-box;
