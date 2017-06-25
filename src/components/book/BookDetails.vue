@@ -1,11 +1,13 @@
 <template>
     <section v-if="bookToShow" class="popup book-details">
-        <button @click="closeMe">x</button>
+        <i class="el-icon-close" @click="closeMe"></i>
+        <br>
+        <br>
         <h1>Details of: {{bookToShow.title}}</h1>
-        <img src="http://via.placeholder.com/250x150">
+        <img :src="bookToShow.img">
         <h3>${{bookToShow.price}}</h3>
         <p>{{bookToShow.description}}</p>
-        <button @click="requestNextBook">Next > </button>
+        <el-button :plain="true" type="info" class="view" @click="requestNextBook">Next</el-button>
     </section>
 </template>
 
@@ -55,14 +57,29 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .popup {
-    background: gold;
-    padding: 10px;
-    border-radius: 1em;
+    background: rgba(232, 232, 232, 1);
+    padding: 40px;
+    box-shadow: 0 0 9px 4px rgba(47, 64, 68, 0.5);
     text-align: center;
-    position: absolute;
-    left: 40%;
-    top: 50%;
+    position: fixed;
+    top: 1%;
+    h1 {
+        color: darkcyan;
+        margin-top: 0px;
+    }
+    i {
+        float: left;
+    }
+    .view {
+        font-family: Gentium Book Basic;
+        text-transform: uppercase;
+        width: 40%;
+        margin: {
+            top: 10px;
+            left: 0px;
+        }
+    }
 }
 </style>

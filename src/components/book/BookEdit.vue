@@ -1,5 +1,6 @@
 <template>
     <section class="popup book-edit">
+    
         <h1 v-if="book">Edit: {{book.title}}</h1>
         <h1 v-else>New Book</h1>
         <label>Title:</label>
@@ -11,8 +12,8 @@
         <label>Description:</label>
         <input type="text" v-model="bookToEdit.description" />
         <br/>
-        <button @click="save">Save</button>
-        <button @click="cancel">Cancel</button>
+        <el-button :plain="true" type="info" class="view" @click="save">Save</el-button>
+        <el-button :plain="true" type="info" class="view" @click="cancel">Cancel</el-button>
     </section>
 </template>
 
@@ -41,14 +42,29 @@ export default {
 }
 </script>
 
-<style scoped>
-    .popup {
-        background: gold;
-        padding: 10px;
-        border-radius: 1em;
-        text-align: center;
-        position: absolute;
-        left: 40%;
-        top: 50%;
+<style lang="scss" scoped>
+.popup {
+    display: flex;
+    flex-direction: column;
+    background: rgba(232, 232, 232, 1);
+    padding: 40px;
+    box-shadow: 0 0 9px 4px rgba(47, 64, 68, 0.5);
+    text-align: center;
+    position: fixed;
+    left: 40%;
+    top: 20%;
+    h1 {
+        color: darkcyan;
+        margin-top: 0px;
     }
+    .view {
+        font-family: Gentium Book Basic;
+        text-transform: uppercase;
+        width: 100%;
+        margin: {
+            top: 10px;
+            left: 0px;
+        }
+    }
+}
 </style>

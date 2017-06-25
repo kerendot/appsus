@@ -1,9 +1,11 @@
 <template>
   <div class="home">
-    <h2>Books!</h2>
+    <h1> our bookstore </h1>    
+    <div class="book-home">      
+      <book-list class="book-list"></book-list>
+      <cart-details class="cart-details"></cart-details>
 
-    <book-list></book-list>
-    <cart-details></cart-details>
+    </div>
   </div>
 </template>
 
@@ -25,22 +27,32 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+<style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css?family=Gentium+Book+Basic');
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+.home {
+    font-family: Gentium Book Basic;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+    h1{
+      padding-bottom: 20px;
+      width: 100%;
+      align-items: center;
+    }
 }
-
-a {
-  color: #42b983;
-}
+  .book-home {
+    display: flex;
+    width: 100%;
+    h2 {
+      align-items: center;
+    }
+    .book-list {
+      width: 80%;
+    } 
+    .cart-details {
+      width: 20%;
+    }
+  }
 </style>

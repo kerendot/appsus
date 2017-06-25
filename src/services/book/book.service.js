@@ -58,41 +58,39 @@ function saveBook(book) {
 
 // Used to create local data with no AJAX
 function generateBooks() {
-  const skills = ['JavaScript', 'CSS', 'SASS', 'Node', 'Angular 2', 'VUE'];
-
-  return skills.map(generateBook);
+  books = [] 
+  books.push(generateBook(1, 'The name of the rose', 
+  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, ea cumque natus quo aut, aspernatur sunt asperiores numquam! Ipsam id voluptates atque fuga inventore incidunt explicabo eius, maiores corporis iusto',
+  'http://images.gr-assets.com/books/1415375471l/119073.jpg', 23))
+  books.push(generateBook(2, 'The girl without a name', 
+  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, ea cumque natus quo aut, aspernatur sunt asperiores numquam! Ipsam id voluptates atque fuga inventore incidunt explicabo eius, maiores corporis iusto',
+  'http://static2.hypable.com/wp-content/uploads/2015/09/the-girl-without-a-name-cover-e1442009010700.jpg', 65))
+  books.push(generateBook(3, 'Book with no name', 
+  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, ea cumque natus quo aut, aspernatur sunt asperiores numquam! Ipsam id voluptates atque fuga inventore incidunt explicabo eius, maiores corporis iusto',
+  'http://images.gr-assets.com/books/1328729548l/1039041.jpg', 10))
+  books.push(generateBook(4, 'A little leg work', 
+  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, ea cumque natus quo aut, aspernatur sunt asperiores numquam! Ipsam id voluptates atque fuga inventore incidunt explicabo eius, maiores corporis iusto',
+  'https://images.indiegogo.com/file_attachments/657706/files/20140618071944-SANY0001.JPG?1403101184', 98))
+  books.push(generateBook(5, 'Not in gods name', 
+  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, ea cumque natus quo aut, aspernatur sunt asperiores numquam! Ipsam id voluptates atque fuga inventore incidunt explicabo eius, maiores corporis iusto',
+  'https://www.prospectmagazine.co.uk/wp-content/uploads/2015/07/Not-In-Gods-Name.jpg', 64))
+  books.push(generateBook(6, 'The emperors knife', 
+  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, ea cumque natus quo aut, aspernatur sunt asperiores numquam! Ipsam id voluptates atque fuga inventore incidunt explicabo eius, maiores corporis iusto',
+  'http://3.bp.blogspot.com/-yP30JtyopwQ/T2d7yTYJVXI/AAAAAAAAAEQ/xXVyPb5Ui-I/s1600/TEKUK.jpg', 37))
+  console.log(books)
+  return books;
 }
 
-function generateBook(skill, i) {
+function generateBook(id, title, description, img, price) {
   return {
-    id: i + 1,
-    title: `Mastering ${skill}`,
-    description: `${skill} lorem  ipsum dkhd daklhd dakhdk dakhdk da`,
-    price: (i + 1) * 10,
+    id,
+    title,
+    description,
+    img,
+    price,
   }
 }
 
-
-
-
-
-
-
-
-
-// function getProductsFromGenericAPI() {
-//   const params = {
-//     rows:       10,
-//     id:        '{index}',
-//     price:     '{number|1000}',
-//     title: '{lorem|2}',
-//     description: '{lorem|10}',
-//     pretty: true
-//   }
-
-//   return $.getJSON('http://www.filltext.com', params);
-
-// }
 
 export default {
   getBooks,
