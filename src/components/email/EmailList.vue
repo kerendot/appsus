@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <email-preview v-for="currEmail in emails" 
+      <email-preview v-for="currEmail in emails" 
           :key="currEmail.id"
           :email="currEmail"
           :class="{unread:!currEmail.isRead}"

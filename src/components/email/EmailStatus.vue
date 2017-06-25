@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!--<h2>Email status!</h2>-->
+    <h2>Read emails:</h2>
     <el-progress :percentage="readPerc"></el-progress>
   </div>
 </template>

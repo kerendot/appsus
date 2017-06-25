@@ -1,29 +1,27 @@
 <template>
   <div class="home">
-    <!--<h2>emails!</h2>-->
   
     <!-- NEW MSG -->
     <el-button v-show="!showCompose" @click="openComposeMsg"> Compose </el-button>
   
-    <email-compose v-show="showCompose" @newMail="newEmailHandler">
+    <email-compose v-show="showCompose" @newMail="newEmailHandler" @cancel="closeComposeMsg">
     </email-compose>
   
     <!--EMAILS-->
     <div class="email-box flex">
-      <email-list class="email-list" :emails="emails" @archive="archiveEmail" @select="selectEmail">
-        <h2>Email list</h2>
-      </email-list>
-  
+      <div class="list-filter">
+        <email-filter class="filter" @filter="setFilter"></email-filter>
+        <email-list v-if="emailsToDisplay" class="email-list" :emails="emailsToDisplay" @archive="archiveEmail" @select="selectEmail">
+          <h2>Email list</h2>
+        </email-list>
+      </div>
       <email-details class="email-details" :email="selectedEmail" @archiveEmail="archiveEmail">
-  
       </email-details>
-  
     </div>
   
     <email-status class="email-status" :readPerc="readPerc">
     </email-status>
   </div>
-  
 </template>
 
 <script>
@@ -32,6 +30,7 @@ import EmailList from './EmailList'
 import EmailDetails from './EmailDetails'
 import EmailCompose from './EmailCompose'
 import EmailStatus from './EmailStatus'
+import EmailFilter from './EmailFilter'
 import EmailService from '../../services/email/email.service';
 
 export default {
@@ -43,7 +42,16 @@ export default {
     EmailDetails,
     EmailStatus,
     EmailCompose,
+    EmailFilter
 
+  },
+  data() {
+    return {
+      emails: null,
+      selectedEmail: null,
+      showCompose: false,
+      filter: null
+    }
   },
   created() {
     EmailService.getEmails().then(emails => {
@@ -52,20 +60,36 @@ export default {
     })
   },
   computed: {
-    readPerc: function(){
-      let readFiltered = this.emails.filter(email=>email.isRead);
-      let readCount = readFiltered.length;
-      return Math.round((readCount/(this.emails.length) * 100));
+    readPerc: function () {
+      if (this.emails) {
+        let readFiltered = this.emails.filter(email => email.isRead);
+        let readCount = readFiltered.length;
+        return Math.round((readCount / (this.emails.length) * 100));
+      }
+      else return 0;
+    },
+    emailsToDisplay: function () {
+      let filtered = this.emails;
+      let filterObj = this.filter;
+      if (filterObj) {
+        if (filterObj.text) {
+          filtered = this.emails.filter(function (email) {
+            return email.body.toLowerCase().includes(filterObj.text.toLowerCase())
+          });
+        }
+        if (filterObj.emailStatus === 'Read') {
+          filtered = filtered.filter(email => email.isRead);
+        }
+        if (filterObj.emailStatus === 'UnRead') {
+          filtered = filtered.filter(email => !email.isRead);
+        }
+      }
+      console.log(filtered);
+      return filtered;
     }
   },
 
-  data() {
-    return {
-      emails: null,
-      selectedEmail: null,
-      showCompose: false,
-    }
-  },
+
   methods: {
     selectEmail(email) {
       this.selectedEmail = email;
@@ -76,23 +100,22 @@ export default {
 
     },
     archiveEmail(email) {
-      console.log('Email handled in EmailApp')
       EmailService.archiveEmail(email)
       this.selectedEmail = this.emails[0];
     },
-
     openComposeMsg() {
-      console.log('composed!')
-      return this.showCompose = true;
-
+      this.showCompose = true;
     },
-
+    closeComposeMsg() {
+      this.showCompose = false;
+    },
     newEmailHandler(subject, body) {
       EmailService.saveEmail(subject, body);
-      this.showCompose = !this.showCompose;
+      this.closeComposeMsg();
     },
-
-
+    setFilter(ev) {
+      this.filter = ev;
+    }
   }
 }
 </script>
@@ -106,13 +129,18 @@ export default {
 .home {
   .email-box {
     flex-direction: row;
+    margin-top: 10px; 
+  }
+
+  .list-filter {
+        width: 40%;
   }
   .email-list {
-    width: 40%;
+    // width: 40%;
     margin: 5px;
     border: 2px solid brown;
-    
-    background-image: linear-gradient(180deg, rgba(255,255,255,1) 0, rgba(247,245,185,1) 100%);
+
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 1) 0, rgba(247, 245, 185, 1) 100%);
     background-position: 50% 50%;
     background-origin: padding-box;
     background-clip: border-box;
@@ -122,7 +150,7 @@ export default {
     width: 60%;
     margin: 5px;
     border: 2px solid brown;
-    background-image: linear-gradient(180deg, rgba(255,255,255,1) 0, rgba(247,245,185,1) 100%);
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 1) 0, rgba(247, 245, 185, 1) 100%);
     background-position: 50% 50%;
     background-origin: padding-box;
     background-clip: border-box;
