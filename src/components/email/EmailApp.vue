@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>emails!</h2>
+    <!--<h2>emails!</h2>-->
   
     <!-- NEW MSG -->
     <el-button v-show="!showCompose" @click="openComposeMsg"> Compose </el-button>
@@ -20,7 +20,7 @@
   
     </div>
   
-    <email-status class="email-status" :emails="emails">
+    <email-status class="email-status" :readPerc="readPerc">
     </email-status>
   </div>
   
@@ -52,6 +52,11 @@ export default {
     })
   },
   computed: {
+    readPerc: function(){
+      let readFiltered = this.emails.filter(email=>email.isRead);
+      let readCount = readFiltered.length;
+      return Math.round((readCount/(this.emails.length) * 100));
+    }
   },
 
   data() {

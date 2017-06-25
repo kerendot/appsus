@@ -1,9 +1,7 @@
 <template>
   <div class="home">
-    <h2>Email status!</h2>
-    <progress-bar> 
-
-    </progress-bar>
+    <!--<h2>Email status!</h2>-->
+    <el-progress :percentage="readPerc"></el-progress>
   </div>
 </template>
 
@@ -12,7 +10,7 @@ import ProgressBar from './ProgressBar'
 
 export default {
   name: 'email-status',
-  props: ['emails'],
+  props: ['readPerc'],
   components: {
     ProgressBar,
   },
