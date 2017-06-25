@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import * as VueGoogleMaps from 'vue2-google-maps';
+import BootstrapVue from 'bootstrap-vue';
+
 
 import 'keen-ui/dist/keen-ui.min.css';
 import KeenUI from 'keen-ui';
@@ -22,6 +24,7 @@ Vue.use(VueGoogleMaps, {
 });
 
 Vue.use(KeenUI);
+Vue.use(BootstrapVue);
 Vue.use(Element);
 
 /* eslint-disable no-new */
